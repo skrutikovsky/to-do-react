@@ -1,0 +1,282 @@
+@font-face
+  font-family: 'Inter'
+  font-style: normal
+  font-weight: normal
+  src: url('https://fonts.googleapis.com/css2?family=Inter&display=swap') format('woff2')
+
+@font-face
+  font-family: 'Inter-Bold'
+  font-style: normal
+  font-weight: 700
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap') format('woff2')
+
+@font-face
+  font-family: 'Inter-ExtraBold'
+  font-style: normal
+  font-weight: 900
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap') format('woff2')
+
+@keyframes on-hover
+  from
+    transform: scale(1)
+  to
+    transform: scale(1.1)
+
+$dark-purple: #470068
+$middle-purple: #BFA0FF
+$light-purple: #F4EEFF
+$font-stack: Inter, sans-serif
+
+=font-mixin($size, $color)
+  font-family: 'Inter-ExtraBold', sans-serif
+  font-size: $size
+  font-weight: 700
+  color: $color
+  text-align: center
+
+
+=block-size($margin-top, $height)
+  width: 90%
+  height: $height
+  margin: $margin-top auto 0 auto
+
+%button-style
+  @include font-mixin(200%, $dark-purple)
+  border-radius: 20px
+  border: transparent
+  background: $middle-purple
+
+html
+  background: #D4BFFF
+  font-family: 'Inter-ExtraBold', sans-serif
+  font-weight: 700
+  color: $dark-purple
+
+.visually-hidden
+  visibility: hidden
+
+.page-header
+  @include block-size(0, 70px)
+  display: flex
+  min-width: 800px
+  align-items: center
+  justify-content: space-between
+
+.header-button
+  @extend %button-style
+  display: block
+  height: 80%
+  width: 15%
+  min-width: 200px
+  box-shadow: 0 1px 3px $dark-purple
+
+.header-button:hover
+  animation: on-hover 0.2s forwards
+  cursor: pointer
+
+.header-logo
+  @include font-mixin(500%, $dark-purple)
+  height: 100%
+  font-weight: 900
+  min-width: 500px
+  text-align: center
+
+.header-logo:hover
+  cursor: pointer
+
+.header-logo::after
+  content: ""
+  display: block
+  position: relative
+  width: 30px
+  height: 30px
+  background: $dark-purple
+  border-radius: 50%
+  bottom: 90%
+  right: 10%
+
+.header-logo::before
+  content: ""
+  display: block
+  position: relative
+  width: 30px
+  height: 30px
+  background: $dark-purple
+  border-radius: 50%
+  top: 110%
+  left: 102%
+
+.page-img
+  @include block-size(60px, 50px)
+  display: block
+
+.page-filters
+  @include block-size(30px, 50px)
+  display: flex
+  justify-content: space-between
+
+%task-filter
+  @include font-mixin(200%, $dark-purple)
+  width: 25%
+  height: 100%
+  display: block
+  background: $light-purple
+  border-radius: 30px
+  border: transparent
+
+.task-filter
+  @extend %task-filter
+  box-shadow: 0 2px 3px $dark-purple
+
+.task-filter:hover
+  animation: on-hover 0.2s forwards
+  cursor: pointer
+
+.task-filter-active
+  @extend %task-filter
+  box-shadow: 0 2px 6px $dark-purple inset
+
+.task-list
+  width: 40%
+  margin: 60px auto 0 auto
+
+%task
+  @include font-mixin(400%, $dark-purple)
+  display: flex
+  border-radius: 30px
+  margin-top: 30px
+  width: auto
+  height: 120px
+  justify-content: space-between
+  input
+    width: 50px
+    height: 50px
+    margin: 0 20px 0 20px
+    align-self: center
+
+  span
+    text-align: center
+    vertical-align: middle
+    align-self: center
+    width: 100%
+
+  div.close-button
+    width: 50px
+    height: 40px
+    margin-left: 20px
+    display: block
+    background: $dark-purple
+    border-radius: 10px
+
+  div.close-button::before
+    position: relative
+    top: -17px
+    color: $light-purple
+    display: inline-block
+    margin-top: -20px
+    content: "\00d7"
+
+  div.close-button:hover
+    animation: on-hover 0.2s forwards
+    cursor: pointer
+
+.task
+  @extend %task
+  background: $middle-purple
+
+.task-active
+  @extend %task
+  background: $light-purple
+  span
+    color: $middle-purple
+    text-decoration: line-through
+    text-decoration-color: $middle-purple
+
+.add-task-popup
+  margin-top: 40px
+  width: 30%
+  height: 40%
+  min-width: 300px
+  min-height: 300px
+  background: $middle-purple
+  display: flex
+  flex-direction: column
+  position: fixed
+  left: 35%
+  border-radius: 30px
+
+.task-input
+  font-size: 30pt
+  resize: none
+  border-radius: 10px
+  width: 80%
+  height: 60%
+  margin: 0 10% 0 10%
+
+.task-input:focus
+  outline: 2px solid $dark-purple
+
+.add-task-button
+  @extend %button-style
+  width: 50%
+  min-width: 200px
+  height: 5%
+  min-height: 50px
+  margin: 20px auto 0 auto
+  background: $light-purple
+  box-shadow: 0 1px 3px $dark-purple
+
+.add-task-button:hover
+  animation: on-hover 0.2s forwards
+  cursor: pointer
+
+.popup-close
+  align-self: end
+  width: 40px
+  height: 40px
+  background: $dark-purple
+  border-radius: 10px
+
+.popup-close::before
+  left: 5px
+  top: -7px
+  font-size: 50px
+  content: "\00d7"
+  position: relative
+  color: $light-purple
+  display: inline-block
+
+.popup-close:hover
+  animation: on-hover 0.2s forwards
+  cursor: pointer
+
+.login-form
+  width: 25%
+  min-width: 300px
+  display: flex
+  flex-direction: column
+  margin: 30px auto 0 auto
+  align-items: center
+  border: 5px solid $dark-purple
+  border-radius: 20px
+  padding: 10px 0 20px 0
+  box-shadow: 0 1px 5px $dark-purple
+
+
+.login-input
+  @include font-mixin(150%, $dark-purple)
+  width: 80%
+  min-width: 200px
+  height: 30px
+  margin-bottom: 20px
+  border-radius: 10px
+  border: 2px solid $dark-purple
+  background: $light-purple
+
+.login-input:focus
+  outline: 2px solid $dark-purple
+
+.login-label
+  @include font-mixin(200%, $dark-purple)
+  border-radius: 10px
+  margin-bottom: 10px
