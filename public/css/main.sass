@@ -10,11 +10,11 @@
   font-weight: 700
   src: url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap') format('woff2')
 
-@font-face
-  font-family: 'Inter-ExtraBold'
-  font-style: normal
-  font-weight: 900
-  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap') format('woff2')
+//@font-face
+//  font-family: 'Inter-ExtraBold'
+//  font-style: normal
+//  font-weight: 900
+//  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap') format('woff2')
 
 @keyframes on-hover
   from
@@ -37,6 +37,7 @@ $font-stack: Inter, sans-serif
 
 =block-size($margin-top, $height)
   width: 90%
+  min-width: 400px
   height: $height
   margin: $margin-top auto 0 auto
 
@@ -58,13 +59,11 @@ html
 .page-header
   @include block-size(0, 70px)
   display: flex
-  min-width: 800px
   align-items: center
   justify-content: space-between
 
 .header-button
   @extend %button-style
-  display: block
   height: 80%
   width: 15%
   min-width: 200px
@@ -75,45 +74,55 @@ html
   cursor: pointer
 
 .header-logo
-  @include font-mixin(500%, $dark-purple)
+  @include font-mixin(400%, $dark-purple)
   height: 100%
   font-weight: 900
-  min-width: 500px
+  min-width: 450px
   text-align: center
+  text-decoration: none
+
 
 .header-logo:hover
   cursor: pointer
 
-.header-logo::after
-  content: ""
-  display: block
-  position: relative
-  width: 30px
-  height: 30px
-  background: $dark-purple
-  border-radius: 50%
-  bottom: 90%
-  right: 10%
-
-.header-logo::before
-  content: ""
-  display: block
-  position: relative
-  width: 30px
-  height: 30px
-  background: $dark-purple
-  border-radius: 50%
-  top: 110%
-  left: 102%
+//.header-logo::after
+//  content: ""
+//  display: block
+//  position: relative
+//  width: 30px
+//  height: 30px
+//  background: $dark-purple
+//  border-radius: 50%
+//  bottom: 90%
+//  right: 10%
+//
+//.header-logo::before
+//  content: ""
+//  display: block
+//  position: relative
+//  width: 30px
+//  height: 30px
+//  background: $dark-purple
+//  border-radius: 50%
+//  top: 110%
+//  left: 102%
+.register-label
+  @include font-mixin(200%, $dark-purple)
+  margin: 30px auto 0 auto
+  div
+    font-size: 100%
+    margin: 20px auto 0 auto
 
 .page-img
-  @include block-size(60px, 50px)
+  @include block-size(30px, 50px)
   display: block
+  min-width: 900px
 
 .page-filters
   @include block-size(30px, 50px)
   display: flex
   justify-content: space-between
+  min-width: 900px
 
 %task-filter
   @include font-mixin(200%, $dark-purple)
@@ -138,6 +147,7 @@ html
 
 .task-list
   width: 40%
+  min-width: 400px
   margin: 60px auto 0 auto
 
 %task
@@ -146,15 +156,34 @@ html
   border-radius: 30px
   margin-top: 30px
   width: auto
-  height: 120px
+  height: 80px
   justify-content: space-between
-  input
-    width: 50px
-    height: 50px
+
+  div.custom-check-box
+    min-width: 40px
+    min-height: 40px
+    border-radius: 10px
+    border: 2px solid $dark-purple
     margin: 0 20px 0 20px
     align-self: center
+    background: $light-purple
+    display: flex
+    justify-content: center
+    align-items: center
+
+    div.custom-check-box-input
+      display: none
+
+    div.custom-check-box-input-active
+      width: 20px
+      height: 20px
+      background: $dark-purple
+      border-radius: 5px
 
   span
+    word-wrap: break-word
+    overflow-x: hidden
+    font-size: 0.6em
     text-align: center
     vertical-align: middle
     align-self: center
@@ -184,7 +213,7 @@ html
   @extend %task
   background: $middle-purple
 
-.task-active
+.task-done
   @extend %task
   background: $light-purple
   span
@@ -195,23 +224,28 @@ html
 .add-task-popup
   margin-top: 40px
   width: 30%
-  height: 40%
+  height: 20%
   min-width: 300px
-  min-height: 300px
+  min-height: 250px
   background: $middle-purple
   display: flex
   flex-direction: column
   position: fixed
   left: 35%
   border-radius: 30px
+  box-shadow: 0 2px 6px $dark-purple
+  z-index: 5
 
 .task-input
-  font-size: 30pt
+  font-size: 3em
   resize: none
   border-radius: 10px
-  width: 80%
-  height: 60%
-  margin: 0 10% 0 10%
+  width: 85%
+  height: 20%
+  margin: 15px auto 0 auto
+
+.letters-counter
+  margin: 10px auto 0 auto
 
 .task-input:focus
   outline: 2px solid $dark-purple
@@ -280,3 +314,5 @@ html
   @include font-mixin(200%, $dark-purple)
   border-radius: 10px
   margin-bottom: 10px
+
+
