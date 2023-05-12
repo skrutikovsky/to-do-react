@@ -1,30 +1,32 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import {AppRoute, ServerURLS} from "../../const";
+import AddTaskPopup from "../../components/add-task-popup/add-task-popup";
+import {observer} from "mobx-react-lite";
+import TaskList from "../../components/task-list/task-list";
+import store from "../../store/store";
+import Logo from "../../components/logo/logo";
 
-export function MainPage(): React.JSX.Element {
-    return (
-        <>
+function MainPage(): React.JSX.Element {
+    const navigate = useNavigate();
+    const taskClickHandler = () => store.popupOpen();
+    useEffect(()=>{store.getTasks()},[store.openedFilter])
+    return (<>
         <div className="page-header">
-            <button className="header-button">+TASK</button>
-            <div className="header-logo">TO DO LIST</div>
-            <button className="header-button">LOGIN</button>
+            <button onClick={taskClickHandler} className="header-button">+TASK</button>
+            <Logo/>
+            <button className="header-button" onClick={()=>{navigate(AppRoute.Login); store.logout()}}>LOG OUT</button>
         </div>
         <img src="polygon.png" alt="poly-bar" className="page-img"/>
         <div className="page-filters">
-            <button className="task-filter-active">ALL TASKS</button>
-            <button className="task-filter">TO DO</button>
-            <button className="task-filter">DONE</button>
+            <button onClick={()=>{store.changeFilter(ServerURLS.ALL)}} className={`task-filter${store.openedFilter === ServerURLS.ALL?'-active':''}`}>ALL TASKS</button>
+            <button onClick={()=>{store.changeFilter(ServerURLS.UNDONE)}} className={`task-filter${store.openedFilter === ServerURLS.UNDONE?'-active':''}`}>TO DO</button>
+            <button onClick={()=>{store.changeFilter(ServerURLS.DONE)}} className={`task-filter${store.openedFilter === ServerURLS.DONE?'-active':''}`}>DONE</button>
         </div>
+        {store.isPopupOpened && <AddTaskPopup/>}
         <ul className="task-list">
-            <li className="task">
-                <input type="checkbox" checked/>
-                    <span>TASK NAME</span>
-                    <div className="close-button"/>
-            </li>
-            <li className="task-active">
-                <input type="checkbox"/>
-                    <span>TASK NAME</span>
-                    <div className="close-button"/>
-            </li>
+            <TaskList tasks={store.tasks}/>
         </ul>
     </>)
 }
+export default observer(MainPage)

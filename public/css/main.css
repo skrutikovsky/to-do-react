@@ -11,12 +11,6 @@
   font-weight: 700;
   src: url("https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap") format("woff2");
 }
-@font-face {
-  font-family: "Inter-ExtraBold";
-  font-style: normal;
-  font-weight: 900;
-  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap") format("woff2");
-}
 @keyframes on-hover {
   from {
     transform: scale(1);
@@ -49,16 +43,15 @@ html {
 
 .page-header {
   width: 90%;
+  min-width: 400px;
   height: 70px;
   margin: 0 auto 0 auto;
   display: flex;
-  min-width: 800px;
   align-items: center;
   justify-content: space-between;
 }
 
 .header-button {
-  display: block;
   height: 80%;
   width: 15%;
   min-width: 200px;
@@ -72,57 +65,51 @@ html {
 
 .header-logo {
   font-family: "Inter-ExtraBold", sans-serif;
-  font-size: 500%;
+  font-size: 400%;
   font-weight: 700;
   color: #470068;
   text-align: center;
   height: 100%;
   font-weight: 900;
-  min-width: 500px;
+  min-width: 450px;
   text-align: center;
+  text-decoration: none;
 }
 
 .header-logo:hover {
   cursor: pointer;
 }
 
-.header-logo::after {
-  content: "";
-  display: block;
-  position: relative;
-  width: 30px;
-  height: 30px;
-  background: #470068;
-  border-radius: 50%;
-  bottom: 90%;
-  right: 10%;
+.register-label {
+  font-family: "Inter-ExtraBold", sans-serif;
+  font-size: 200%;
+  font-weight: 700;
+  color: #470068;
+  text-align: center;
+  margin: 30px auto 0 auto;
 }
-
-.header-logo::before {
-  content: "";
-  display: block;
-  position: relative;
-  width: 30px;
-  height: 30px;
-  background: #470068;
-  border-radius: 50%;
-  top: 110%;
-  left: 102%;
+.register-label div {
+  font-size: 100%;
+  margin: 20px auto 0 auto;
 }
 
 .page-img {
   width: 90%;
+  min-width: 400px;
   height: 50px;
-  margin: 60px auto 0 auto;
+  margin: 30px auto 0 auto;
   display: block;
+  min-width: 900px;
 }
 
 .page-filters {
   width: 90%;
+  min-width: 400px;
   height: 50px;
   margin: 30px auto 0 auto;
   display: flex;
   justify-content: space-between;
+  min-width: 900px;
 }
 
 .task-filter-active, .task-filter {
@@ -154,10 +141,11 @@ html {
 
 .task-list {
   width: 40%;
+  min-width: 400px;
   margin: 60px auto 0 auto;
 }
 
-.task-active, .task {
+.task-done, .task {
   font-family: "Inter-ExtraBold", sans-serif;
   font-size: 400%;
   font-weight: 700;
@@ -167,22 +155,40 @@ html {
   border-radius: 30px;
   margin-top: 30px;
   width: auto;
-  height: 120px;
+  height: 80px;
   justify-content: space-between;
 }
-.task-active input, .task input {
-  width: 50px;
-  height: 50px;
+.task-done div.custom-check-box, .task div.custom-check-box {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 10px;
+  border: 2px solid #470068;
   margin: 0 20px 0 20px;
   align-self: center;
+  background: #F4EEFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.task-active span, .task span {
+.task-done div.custom-check-box div.custom-check-box-input, .task div.custom-check-box div.custom-check-box-input {
+  display: none;
+}
+.task-done div.custom-check-box div.custom-check-box-input-active, .task div.custom-check-box div.custom-check-box-input-active {
+  width: 20px;
+  height: 20px;
+  background: #470068;
+  border-radius: 5px;
+}
+.task-done span, .task span {
+  word-wrap: break-word;
+  overflow-x: hidden;
+  font-size: 0.6em;
   text-align: center;
   vertical-align: middle;
   align-self: center;
   width: 100%;
 }
-.task-active div.close-button, .task div.close-button {
+.task-done div.close-button, .task div.close-button {
   width: 50px;
   height: 40px;
   margin-left: 20px;
@@ -190,7 +196,7 @@ html {
   background: #470068;
   border-radius: 10px;
 }
-.task-active div.close-button::before, .task div.close-button::before {
+.task-done div.close-button::before, .task div.close-button::before {
   position: relative;
   top: -17px;
   color: #F4EEFF;
@@ -198,7 +204,7 @@ html {
   margin-top: -20px;
   content: "×";
 }
-.task-active div.close-button:hover, .task div.close-button:hover {
+.task-done div.close-button:hover, .task div.close-button:hover {
   animation: on-hover 0.2s forwards;
   cursor: pointer;
 }
@@ -207,10 +213,10 @@ html {
   background: #BFA0FF;
 }
 
-.task-active {
+.task-done {
   background: #F4EEFF;
 }
-.task-active span {
+.task-done span {
   color: #BFA0FF;
   text-decoration: line-through;
   text-decoration-color: #BFA0FF;
@@ -219,24 +225,30 @@ html {
 .add-task-popup {
   margin-top: 40px;
   width: 30%;
-  height: 40%;
+  height: 20%;
   min-width: 300px;
-  min-height: 300px;
+  min-height: 250px;
   background: #BFA0FF;
   display: flex;
   flex-direction: column;
   position: fixed;
   left: 35%;
   border-radius: 30px;
+  box-shadow: 0 2px 6px #470068;
+  z-index: 5;
 }
 
 .task-input {
-  font-size: 30pt;
+  font-size: 3em;
   resize: none;
   border-radius: 10px;
-  width: 80%;
-  height: 60%;
-  margin: 0 10% 0 10%;
+  width: 85%;
+  height: 20%;
+  margin: 15px auto 0 auto;
+}
+
+.letters-counter {
+  margin: 10px auto 0 auto;
 }
 
 .task-input:focus {
