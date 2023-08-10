@@ -1,32 +1,26 @@
 {
   "all": [
     {
-      "id": 19,
+      "id": 1,
+      "taskText": "Hello guys!",
+      "isDone": true
+    },
+    {
+      "id": 2,
       "taskText": "Hello world!",
       "isDone": true
     },
     {
-      "id": 21,
-      "taskText": "Done task",
-      "isDone": true
-    },
-    {
-      "id": 22,
-      "taskText": "Wait result",
-      "isDone": false
-    },
-    {
-      "id": 23,
-      "taskText": "Say hello!",
-      "isDone": true
-    },
-    {
-      "id": 24,
-      "taskText": "Go interview",
+      "id": 3,
+      "taskText": "To do this!",
       "isDone": false
     }
   ],
   "login": [
-
+    {
+      "login": "123",
+      "password": "123",
+      "id": 8
+    }
   ]
 }
