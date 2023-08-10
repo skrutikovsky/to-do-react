@@ -19,6 +19,7 @@ function Login(): React.JSX.Element {
         <img src="polygon.png" alt="poly-bar" className="page-img"/>
 
         <form action="#" className="login-form">
+            <div>Используйте Login: 123 Password: 123</div>
             <label className="login-label" htmlFor="login">Login</label>
             <input onChange={(evt)=>setLogin(evt.currentTarget.value)} className="login-input" id="login" type="text"/>
             <label className="login-label" htmlFor="password">Password</label>
