@@ -5,11 +5,11 @@ export enum AppRoute {
 }
 
 export enum ServerURLS {
-    BACKEND_URL = 'http://localhost:4000',
-    ALL = 'http://localhost:4000/all',
-    DONE = 'http://localhost:4000/all?isDone=true',
-    UNDONE = 'http://localhost:4000/all?isDone=false',
-    LOGIN = 'http://localhost:4000/login',
+    BACKEND_URL = 'https://server-personal-page-2.onrender.com',
+    ALL = 'https://server-personal-page-2.onrender.com/tasks',
+    DONE = 'https://server-personal-page-2.onrender.com/tasks?isDone=true',
+    UNDONE = 'https://server-personal-page-2.onrender.com/tasks?isDone=false',
+    LOGIN = 'https://server-personal-page-2.onrender.com/login',
 }
 
 export enum AuthStatus {

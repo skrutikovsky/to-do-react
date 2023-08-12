@@ -48,7 +48,7 @@ class Store {
                 password: authInfo.password,
             })})
             .then(()=>(this.isAuth = AuthStatus.AUTH))
-            .then(()=>{browserHistory.push(AppRoute.Main)})
+            .then(()=>{browserHistory.push(AppRoute.Main)}).catch(()=>alert("Неверный логин или пароль!"))
     }
     public logout(): void {
         this.isAuth = AuthStatus.NOAUTH;
@@ -90,7 +90,7 @@ class Store {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({isDone: !data.isDone})
+            body: JSON.stringify(data)
         }).then(()=>{this.getTasks()});
     }
 }
