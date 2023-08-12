@@ -90,7 +90,7 @@ class Store {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({isDone: !data.isDone})
+            body: JSON.stringify(data)
         }).then(()=>{this.getTasks()});
     }
 }
